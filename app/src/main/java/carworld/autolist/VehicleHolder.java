@@ -7,10 +7,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+import static carworld.autolist.Helper.getInstallment;
+import static carworld.autolist.Helper.getLocation;
+import static carworld.autolist.Helper.populateImageView;
 
 /**
  * Created by amritachowdhury on 4/22/17.
@@ -34,8 +36,6 @@ public  class VehicleHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     private Vehicle vehicle;
 
-    private static final String PHOTO_KEY = "PHOTO";
-
     public VehicleHolder(View v) {
         super(v);
         ButterKnife.bind(this, v);
@@ -45,17 +45,15 @@ public  class VehicleHolder extends RecyclerView.ViewHolder implements View.OnCl
     @Override
     public void onClick(View v) {
         DebugStatements.printDebugStatements(vehicle.getDescription());
-            /*Context context = itemView.getContext();
-            Intent showPhotoIntent = new Intent(context, VehicleDetailActivity.class);
-            showPhotoIntent.putExtra(PHOTO_KEY, vehicle);
-            context.startActivity(showPhotoIntent);*/
+            Context context = itemView.getContext();
+            Intent vehicleDetailIntent = new Intent(context, VehicleDetailActivity.class);
+            vehicleDetailIntent.putExtra(Config.recycleView.SELECTED_VEHICLE, vehicle);
+            context.startActivity(vehicleDetailIntent);
     }
 
     public void bindVehicle(Vehicle v) {
         vehicle = v;
-        populateImageView(v.getThumbnailUrl());
-       // image.setImageResource(R.drawable.splash_1);
-       // Picasso.with(image.getContext()).load(v.getThumbnailUrl()).into(image);
+        populateImageView(image, vehicle.getThumbnailUrl());
         price.setText(vehicle.getPrice());
         description.setText(vehicle.getDescription());
         mileage.setText(vehicle.getMileage());
@@ -63,19 +61,4 @@ public  class VehicleHolder extends RecyclerView.ViewHolder implements View.OnCl
         installment.setText(getInstallment(vehicle));
     }
 
-    private void populateImageView(String imageUrl) {
-        Picasso.with(image.getContext())
-                .load(imageUrl)
-                .placeholder(R.drawable.ic_placeholder)
-                .error(R.drawable.ic_placeholder)
-                .into(image);
-    }
-
-    private String getLocation(Vehicle vehicle) {
-        return vehicle.getCity() + ", " + vehicle.getState();
-    }
-
-    private String getInstallment(Vehicle vehicle) {
-        return "Est $" + String.valueOf(vehicle.getInstallment()) + " /mo";
-    }
 }

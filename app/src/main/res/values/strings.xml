@@ -7,5 +7,12 @@
     <string name="price_seek_bar_label">Price: $</string>
     <string name="price_seek_bar_multiplier">K</string>
     <string name="price_selector">Price Selector</string>
-
+    <string name="body_type">Body Type</string>
+    <string name="display_color">Display Color</string>
+    <string name="condition">Car Condition</string>
+    <string name="vehicle_details">Vehicle Details</string>
+    <string name="share">share</string>
+    <string name="email_body">Hey what do you think about this car?\n\nCheck out the image: \n%1$s</string>
+    <string name="email_subject">Thinking of buying a car!</string>
+    <string name="email">Email</string>
 </resources>

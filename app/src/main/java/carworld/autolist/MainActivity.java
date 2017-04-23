@@ -20,9 +20,6 @@ import carworld.autolist.Network.VehicleNetworkUsage;
 /* https://www.raywenderlich.com/126528/android-recyclerview-tutorial*/
 public class MainActivity extends AppCompatActivity {
 
-    private final int TEST_VAL = 20;
-
-    // Store a member variable for the listener
     private InfiniteScrollListener scrollListener;
     private Adapter adapter;
     private List<Vehicle> vehicles;
@@ -34,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.filter)
     protected void priceFilter() {
+        scrollListener.resetState();
          new PriceDialog(this, minPriceRange / 1000, maxPriceRange / 1000, new OnSelectPriceRangeListener() {
             @Override
             public void getPriceRange(int minPrice, int maxPrice) {
@@ -42,13 +40,12 @@ public class MainActivity extends AppCompatActivity {
                 maxPriceRange = maxPrice;
                 isFiltered = true;
                 page = 1;
-                DebugStatements.printDebugStatements(String.valueOf(minPrice));
-                DebugStatements.printDebugStatements(String.valueOf(maxPrice));
                 populateSearchResults();
             }
         });
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,18 +66,11 @@ public class MainActivity extends AppCompatActivity {
                 loadNextDataFromApi(page);
             }
         };
-        // Adds the scroll listener to RecyclerView
         recyclerView.addOnScrollListener(scrollListener);
     }
 
     // Append the next page of data into the adapter
-    // This method probably sends out a network request and appends new data items to your adapter.
     public void loadNextDataFromApi(int offset) {
-        // Send an API request to retrieve appropriate paginated data
-        //  --> Send the request including an offset value (i.e `page`) as a query parameter.
-        //  --> Deserialize and construct new model objects from the API response
-        //  --> Append the new data objects to the existing set of items inside the array of items
-        //  --> Notify the adapter of the new items made with `notifyItemRangeInserted()`
         page = offset;
         populateSearchResults();
     }
@@ -93,12 +83,6 @@ public class MainActivity extends AppCompatActivity {
         isFiltered = false;
         page = 1;
         populateSearchResults();
-
-        /*vehicles = new ArrayList<>();
-        for (int i = 0; i <  TEST_VAL; i++) {
-            Vehicle temp = new Vehicle(i + 1);
-            vehicles.add(temp);
-        }*/
     }
 
     private void populateSearchResults() {

@@ -1,5 +1,8 @@
 package carworld.autolist;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,7 +11,7 @@ import java.util.Date;
  * Created by amritachowdhury on 4/22/17.
  */
 
-public class Vehicle {
+public class Vehicle implements Parcelable {
 
 
     public String getDescription() {
@@ -102,15 +105,6 @@ public class Vehicle {
     private String displayColor;
     private String thumbnailUrl;
 
-    /*public Vehicle(int itemNo) {
-        this.price = "$56,100";
-        this.description = "test description : " + String.valueOf(itemNo);
-        this.mileage = "49k miles";
-        this.city = "Sacramento";
-        this.state = "CA";
-        this.installment = 67;
-    }*/
-
     public Vehicle(String price, String description, String mileage, String state, String city,
                    int installment, String condition, String bodyType, String displayColor, String thumbnailUrl) {
         this.price = price;
@@ -123,5 +117,47 @@ public class Vehicle {
         this.bodyType = bodyType;
         this.displayColor = displayColor;
         this.thumbnailUrl = thumbnailUrl;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(price);
+        dest.writeString(description);
+        dest.writeString(mileage);
+        dest.writeString(city);
+        dest.writeString(state);
+        dest.writeInt(installment);
+        dest.writeString(condition);
+        dest.writeString(bodyType);
+        dest.writeString(displayColor);
+        dest.writeString(thumbnailUrl);
+    }
+
+    public static final Parcelable.Creator<Vehicle> CREATOR = new Parcelable.Creator<Vehicle>() {
+        public Vehicle createFromParcel(Parcel in) {
+            return new Vehicle(in);
+        }
+
+        public Vehicle[] newArray(int size) {
+            return new Vehicle[size];
+        }
+    };
+
+    private Vehicle(Parcel in) {
+        price = in.readString();
+        description = in.readString();
+        mileage = in.readString();
+        city = in.readString();
+        state = in.readString();
+        installment = in.readInt();
+        condition = in.readString();
+        bodyType = in.readString();
+        displayColor = in.readString();
+        thumbnailUrl = in.readString();
     }
 }

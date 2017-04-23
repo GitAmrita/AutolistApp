@@ -18,8 +18,6 @@ import carworld.autolist.Vehicle;
 
 public class VehicleNetworkUsage {
     private static final String URL = Config.api.BASE_URL ;
-    ////https://autolist-test.herokuapp.com/search?page=1
-    //https://autolist-test.herokuapp.com/search?page=1&price_min=5000&price_max=10000
 
     private String getVehicleDescription(JSONObject record) {
         String year = "";

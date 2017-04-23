@@ -39,7 +39,6 @@ public class Adapter extends RecyclerView.Adapter<VehicleHolder> {
 
     @Override
     public int getItemCount() {
-        //The adapter will work out how many items to display.
         return  vehicles.size();
     }
 }

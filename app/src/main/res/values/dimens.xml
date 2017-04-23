@@ -25,5 +25,15 @@
     <dimen name="price_ok_width">100dp</dimen>
     <dimen name="price_ok_height">50dp</dimen>
 
+    <!-- vehicle detail -->
+    <dimen name="card_view_margin">5dp</dimen>
+    <dimen name="card_view_content_padding">10dp</dimen>
+    <dimen name="card_view_corner_radius">2dp</dimen>
+    <dimen name="card_view_padding">60dp</dimen>
+    <dimen name="linear_layout_width">70dp</dimen>
+    <dimen name="medium_text">18sp</dimen>
+    <dimen name="share_button_height">70dp</dimen>
+    <dimen name="share_button_margin">30dp</dimen>
+
 </resources>
 
