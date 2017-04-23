@@ -27,7 +27,6 @@ public class Adapter extends RecyclerView.Adapter<VehicleHolder> {
     public VehicleHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflatedView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.vehicle_row, parent, false);
-       // final View dialogView = inflater.inflate(R.layout.dialog_add_spine_text, null);
         return new VehicleHolder(inflatedView);
     }
 

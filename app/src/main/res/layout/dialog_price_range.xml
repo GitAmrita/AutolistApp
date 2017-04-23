@@ -22,7 +22,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="@dimen/peek_margin"
-            android:max="1000"/>
+            android:max="100"/>
 
         <TextView
             android:id="@+id/price1"
@@ -45,7 +45,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="@dimen/peek_margin"
-            android:max="1000"/>
+            android:max="100"/>
 
         <TextView
             android:id="@+id/price2"

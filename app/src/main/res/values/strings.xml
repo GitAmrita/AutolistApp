@@ -3,7 +3,7 @@
     <string name="ok">OK</string>
     <string name="filter">filter</string>
     <string name="cancel">Cancel</string>
-    <string name="default_price_seek_bar">Price: $1,000K</string>
+    <string name="default_price_seek_bar">Price: $1K</string>
     <string name="price_seek_bar_label">Price: $</string>
     <string name="price_seek_bar_multiplier">K</string>
     <string name="price_selector">Price Selector</string>

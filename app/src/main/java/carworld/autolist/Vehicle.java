@@ -35,33 +35,52 @@ public class Vehicle {
         this.mileage = mileage;
     }
 
-    public String getLocation() {
-        return location;
+    public String getCity() {
+        return city;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getInstallment() {
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public int getInstallment() {
         return installment;
     }
 
-    public void setInstallment(String installment) {
+    public void setInstallment(int installment) {
         this.installment = installment;
     }
 
     private String price;
     private String description;
     private String mileage;
-    private String location;
-    private String installment;
+    private String city;
+    private String state;
+    private int installment;
 
     public Vehicle(int itemNo) {
         this.price = "$56,100";
         this.description = "test description : " + String.valueOf(itemNo);
         this.mileage = "49k miles";
-        this.location = "Sacramento, CA";
-        this.installment = "Est $677/mo";
+        this.city = "Sacramento";
+        this.state = "CA";
+        this.installment = 67;
+    }
+
+    public Vehicle(String price, String description, String mileage, String state, String city, int installment) {
+        this.price = price;
+        this.description = description;
+        this.mileage = mileage;
+        this.state = state;
+        this.city = city;
+        this.installment = installment;
     }
 }

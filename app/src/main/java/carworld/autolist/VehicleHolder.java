@@ -54,7 +54,15 @@ public  class VehicleHolder extends RecyclerView.ViewHolder implements View.OnCl
         price.setText(vehicle.getPrice());
         description.setText(vehicle.getDescription());
         mileage.setText(vehicle.getMileage());
-        location.setText(vehicle.getLocation());
-        installment.setText(vehicle.getInstallment());
+        location.setText(getLocation(vehicle));
+        installment.setText(getInstallment(vehicle));
+    }
+
+    private String getLocation(Vehicle vehicle) {
+        return vehicle.getCity() + ", " + vehicle.getState();
+    }
+
+    private String getInstallment(Vehicle vehicle) {
+        return "Est $" + String.valueOf(vehicle.getInstallment()) + " /mo";
     }
 }

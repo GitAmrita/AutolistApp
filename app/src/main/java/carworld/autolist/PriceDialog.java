@@ -30,11 +30,14 @@ public class PriceDialog extends AlertDialog {
     protected TextView price2Label;
 
     private OnSelectPriceRangeListener listener;
+    private int price1, price2;
 
-    protected PriceDialog(MainActivity activity, final OnSelectPriceRangeListener listener) {
+    protected PriceDialog(MainActivity activity, int price1, int price2, final OnSelectPriceRangeListener listener) {
         super(activity);
         this.activity = activity;
         this.listener = listener;
+        this.price1 = price1;
+        this.price2 = price2;
         createPriceDialog();
     }
 
@@ -46,12 +49,22 @@ public class PriceDialog extends AlertDialog {
             final View dialogView = inflater.inflate(R.layout.dialog_price_range, null);
             ButterKnife.bind(this, dialogView);
             alertDialogBuilder.setView(dialogView);
+            //initData();
             setListeners();
             priceDialog = alertDialogBuilder.create();
             priceDialog.show();
         } catch(Exception ex) {
 
         }
+    }
+
+    private void initData() {
+        price1SeekBar.setMax(price1);
+        price1Label.setText(activity.getString(R.string.price_seek_bar_label)
+                + price1 + activity.getString(R.string.price_seek_bar_multiplier));
+        price2SeekBar.setMax(price2);
+        price2Label.setText(activity.getString(R.string.price_seek_bar_label)
+                + price2 + activity.getString(R.string.price_seek_bar_multiplier));
     }
 
     private void setListeners() {
