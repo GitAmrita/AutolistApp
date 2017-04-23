@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/lightGray"
+    android:layout_height="match_parent">
+
+    <TextView
+        style="@style/bold_text"
+        android:layout_marginTop="@dimen/peek_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/price_selector"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SeekBar
+            android:id="@+id/price1_seek_bar"
+            android:layout_width="@dimen/peek_width"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/peek_margin"
+            android:max="1000"/>
+
+        <TextView
+            android:id="@+id/price1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/price1_seek_bar"
+            android:layout_marginLeft="@dimen/peek_margin"
+            android:text="@string/default_price_seek_bar"
+            android:layout_marginTop="@dimen/peek_width_small" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SeekBar
+            android:id="@+id/price2_seek_bar"
+            android:layout_width="@dimen/peek_width"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/peek_margin"
+            android:max="1000"/>
+
+        <TextView
+            android:id="@+id/price2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/price2_seek_bar"
+            android:layout_marginLeft="@dimen/peek_margin"
+            android:text="@string/default_price_seek_bar"
+            android:layout_marginTop="@dimen/peek_width_small" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/peek_margin"
+        android:background="@drawable/button_background"
+        android:text="@string/ok"
+        android:textAllCaps="true"
+        android:textColor="@color/button_text" />
+</LinearLayout>
