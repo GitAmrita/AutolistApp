@@ -11,6 +11,7 @@
         android:layout_gravity="center"
         android:background="@color/lightGray"
         android:src="@drawable/splash_1"
+        android:scaleType="centerCrop"
         android:layout_marginTop="8dp"/>
     <TextView
         style="@style/bold_text"

@@ -1,15 +1,9 @@
 package carworld.autolist.Network;
 
-
-
-//import com.loopj.android.http.JsonHttpResponseHandler;
-
-import android.util.Log;
-
 import org.json.*;
 import com.loopj.android.http.*;
-
 import org.json.JSONArray;
+import cz.msebera.android.httpclient.Header;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +11,6 @@ import java.util.List;
 import carworld.autolist.Config;
 import carworld.autolist.Listener.OnGetSearchResultListener;
 import carworld.autolist.Vehicle;
-import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by amritachowdhury on 4/23/17.
@@ -58,6 +51,10 @@ public class VehicleNetworkUsage {
                 String mileage = "";
                 String city = "";
                 String state = "";
+                String condition = "";
+                String bodyType = "";
+                String displayColor = "";
+                String thumbnailUrl = "";
                 JSONObject record = records.getJSONObject(i);
                 if (record.has("price")) {
                     price = record.get("price").toString();
@@ -76,7 +73,20 @@ public class VehicleNetworkUsage {
                     int d = record.getInt("price_unformatted");
                     installment = d / Config.priceRange.INSTALLMENT_PERIOD_IN_MONTHS;
                 }
-                Vehicle vehicle = new Vehicle(price, description, mileage, state, city, installment);
+                if (record.has("condition")) {
+                    condition = record.get("condition").toString();
+                }
+                if (record.has("body_type")) {
+                    bodyType = record.get("body_type").toString();
+                }
+                if (record.has("display_color")) {
+                    displayColor = record.get("display_color").toString();
+                }
+                if (record.has("thumbnail_url")) {
+                    thumbnailUrl = record.get("thumbnail_url").toString();
+                }
+                Vehicle vehicle = new Vehicle(price, description, mileage, state, city, installment,
+                        condition, bodyType, displayColor, thumbnailUrl);
                 vehicles.add(vehicle);
             }
         } catch (Exception e) {
