@@ -1,24 +1,19 @@
 package carworld.autolist;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.CompoundButton;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
 
 /**
  * Created by amritachowdhury on 4/22/17.
  */
-
+//http://stackoverflow.com/questions/32427889/checkbox-in-recyclerview-keeps-on-checking-different-items
 public class Adapter extends RecyclerView.Adapter<VehicleHolder> {
     private List<Vehicle> vehicles;
     private MainActivity context;
@@ -37,9 +32,16 @@ public class Adapter extends RecyclerView.Adapter<VehicleHolder> {
 
     @Override
     public void onBindViewHolder(VehicleHolder holder, int position) {
-        Vehicle item = vehicles.get(position);
+        final Vehicle item = vehicles.get(position);
+        holder.favorite.setOnCheckedChangeListener(null);
+        holder.favorite.setChecked(false);
+        holder.favorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                item.setFavorite(isChecked);
+            }
+        });
         if (position == Config.recycleView.ASK_SEARCH_RESULT_SAVED) {
-            Log.e("bapi", "adapter");
             new SaveSearchResultDialog(context);
         }
         holder.bindVehicle(item);

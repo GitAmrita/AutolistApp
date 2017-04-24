@@ -94,6 +94,14 @@ public class Vehicle implements Parcelable {
         this.thumbnailUrl = thumbnailUrl;
     }
 
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
     private String price;
     private String description;
     private String mileage;
@@ -104,6 +112,7 @@ public class Vehicle implements Parcelable {
     private String bodyType;
     private String displayColor;
     private String thumbnailUrl;
+    private boolean isFavorite;
 
     public Vehicle(String price, String description, String mileage, String state, String city,
                    int installment, String condition, String bodyType, String displayColor, String thumbnailUrl) {
@@ -117,6 +126,7 @@ public class Vehicle implements Parcelable {
         this.bodyType = bodyType;
         this.displayColor = displayColor;
         this.thumbnailUrl = thumbnailUrl;
+        this.isFavorite = false;
     }
 
     @Override
@@ -136,6 +146,7 @@ public class Vehicle implements Parcelable {
         dest.writeString(bodyType);
         dest.writeString(displayColor);
         dest.writeString(thumbnailUrl);
+        dest.writeByte((byte) (isFavorite ? 1 : 0));
     }
 
     public static final Parcelable.Creator<Vehicle> CREATOR = new Parcelable.Creator<Vehicle>() {
@@ -159,5 +170,6 @@ public class Vehicle implements Parcelable {
         bodyType = in.readString();
         displayColor = in.readString();
         thumbnailUrl = in.readString();
+        isFavorite = in.readByte() != 0;
     }
 }

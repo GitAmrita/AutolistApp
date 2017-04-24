@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,6 +41,8 @@ public class VehicleDetailActivity extends AppCompatActivity {
     protected TextView displayColor;
     @Bind(R.id.condition)
     protected TextView condition;
+    @Bind(R.id.favorite)
+    protected CheckBox favorite;
 
 
     private Vehicle vehicle;
@@ -62,6 +65,7 @@ public class VehicleDetailActivity extends AppCompatActivity {
         bodyType.setText(vehicle.getBodyType());
         displayColor.setText(vehicle.getDisplayColor());
         condition.setText(vehicle.getCondition());
+        favorite.setChecked(vehicle.isFavorite());
     }
 
     @OnClick(R.id.share)

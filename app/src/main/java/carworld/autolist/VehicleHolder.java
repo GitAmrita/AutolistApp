@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,6 +35,8 @@ public  class VehicleHolder extends RecyclerView.ViewHolder implements View.OnCl
     protected TextView location;
     @Bind(R.id.installment)
     protected TextView installment;
+    @Bind(R.id.favorite)
+    protected CheckBox favorite;
 
     private Vehicle vehicle;
 
@@ -44,7 +48,6 @@ public  class VehicleHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        DebugStatements.printDebugStatements(vehicle.getDescription());
         Context context = itemView.getContext();
         Intent vehicleDetailIntent = new Intent(context, VehicleDetailActivity.class);
         vehicleDetailIntent.putExtra(Config.recycleView.SELECTED_VEHICLE, vehicle);
