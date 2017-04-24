@@ -24,4 +24,12 @@ public class Config {
     public static final class api {
         public static final String BASE_URL = "https://autolist-test.herokuapp.com/search";
     }
+
+    public static final class testData {
+        public static final String TEST_EMAIL = "test_me@mailinator.com";
+        public static final String TEST_PHONE_NUMBER = "6772332910";
+        public static final int TEST_NO_1 = 3;
+        public static final int TEST_NO_2 = 7;
+        public static final int TEST_NO_3 = 13;
+    }
 }

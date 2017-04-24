@@ -3,6 +3,8 @@ package carworld.autolist.Network;
 import org.json.*;
 import com.loopj.android.http.*;
 import org.json.JSONArray;
+
+import carworld.autolist.Seller;
 import cz.msebera.android.httpclient.Header;
 
 import java.util.LinkedList;
@@ -43,6 +45,7 @@ public class VehicleNetworkUsage {
         List<Vehicle> vehicles = new LinkedList<>();
         try {
             for (int i = 0; i < records.length(); i++) {
+                int id = 0;
                 String price = "";
                 int installment = 0;
                 String description = "";
@@ -54,6 +57,9 @@ public class VehicleNetworkUsage {
                 String displayColor = "";
                 String thumbnailUrl = "";
                 JSONObject record = records.getJSONObject(i);
+                if (record.has("id")) {
+                    id = record.getInt("id");
+                }
                 if (record.has("price")) {
                     price = record.get("price").toString();
                 }
@@ -83,14 +89,25 @@ public class VehicleNetworkUsage {
                 if (record.has("thumbnail_url")) {
                     thumbnailUrl = record.get("thumbnail_url").toString();
                 }
+                Seller seller = getSellerDetails(record, id);
                 Vehicle vehicle = new Vehicle(price, description, mileage, state, city, installment,
-                        condition, bodyType, displayColor, thumbnailUrl);
+                        condition, bodyType, displayColor, thumbnailUrl, seller);
                 vehicles.add(vehicle);
             }
         } catch (Exception e) {
 
         }
         return vehicles;
+    }
+
+    private Seller getSellerDetails(JSONObject record, int id) {
+        try {
+            if (record.has("dealer_name")) {
+                return populateDealerWithTestData(record.get("dealer_name").toString(), id);
+            }
+        } catch(Exception e) {
+        }
+        return null;
     }
 
     public void getVehicleList(int page, int minPrice, int maxPrice, boolean isFiltered,
@@ -124,5 +141,14 @@ public class VehicleNetworkUsage {
             query += "&price_max=" + String.valueOf(maxPrice);
         }
         return query;
+    }
+
+    private Seller populateDealerWithTestData(String dealerName, int id) {
+        if (id % Config.testData.TEST_NO_1 == 0 || id % Config.testData.TEST_NO_2 == 0 ||
+                id % Config.testData.TEST_NO_3 == 0) {
+            return new Seller(dealerName, Seller.ContactType.PHONE, Config.testData.TEST_PHONE_NUMBER);
+        } else {
+            return new Seller(dealerName, Seller.ContactType.EMAIL, Config.testData.TEST_EMAIL);
+        }
     }
 }

@@ -102,6 +102,14 @@ public class Vehicle implements Parcelable {
         isFavorite = favorite;
     }
 
+    public Seller getSellerDetails() {
+        return sellerDetails;
+    }
+
+    public void setSellerDetails(Seller sellerDetails) {
+        this.sellerDetails = sellerDetails;
+    }
+
     private String price;
     private String description;
     private String mileage;
@@ -113,9 +121,11 @@ public class Vehicle implements Parcelable {
     private String displayColor;
     private String thumbnailUrl;
     private boolean isFavorite;
+    private Seller sellerDetails;
 
     public Vehicle(String price, String description, String mileage, String state, String city,
-                   int installment, String condition, String bodyType, String displayColor, String thumbnailUrl) {
+                   int installment, String condition, String bodyType, String displayColor,
+                   String thumbnailUrl, Seller sellerDetails) {
         this.price = price;
         this.description = description;
         this.mileage = mileage;
@@ -127,6 +137,8 @@ public class Vehicle implements Parcelable {
         this.displayColor = displayColor;
         this.thumbnailUrl = thumbnailUrl;
         this.isFavorite = false;
+        this.sellerDetails = new Seller(sellerDetails.getName(), sellerDetails.getContactType(),
+                sellerDetails.getContactDetails());
     }
 
     @Override
@@ -147,6 +159,7 @@ public class Vehicle implements Parcelable {
         dest.writeString(displayColor);
         dest.writeString(thumbnailUrl);
         dest.writeByte((byte) (isFavorite ? 1 : 0));
+        dest.writeParcelable(this.sellerDetails, flags);
     }
 
     public static final Parcelable.Creator<Vehicle> CREATOR = new Parcelable.Creator<Vehicle>() {
@@ -171,5 +184,6 @@ public class Vehicle implements Parcelable {
         displayColor = in.readString();
         thumbnailUrl = in.readString();
         isFavorite = in.readByte() != 0;
+        this.sellerDetails = in.readParcelable(Seller.class.getClassLoader());
     }
 }
