@@ -1,12 +1,11 @@
 package carworld.autolist;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isFiltered;
     private int page;
     private VehicleNetworkUsage usage;
+    ProgressDialog prgDialog;
 
     @OnClick(R.id.filter)
     protected void priceFilter() {
@@ -76,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initData() {
+        prgDialog = new ProgressDialog(this);
+        prgDialog.setMessage(getString(R.string.wait));
+        prgDialog.setCancelable(false);
         vehicles = new LinkedList<>();
         usage = new VehicleNetworkUsage();
         minPriceRange = 0;
@@ -86,9 +89,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void populateSearchResults() {
+        prgDialog.show();
         usage.getVehicleList(page, minPriceRange, maxPriceRange, isFiltered, new OnGetSearchResultListener() {
             @Override
             public void getVehicles(List<Vehicle> v) {
+                prgDialog.hide();
                 for (Vehicle temp : v) {
                     vehicles.add(temp);
                 }

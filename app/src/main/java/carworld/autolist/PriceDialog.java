@@ -115,7 +115,8 @@ public class PriceDialog extends AlertDialog {
         int price1 = price1SeekBar.getProgress();
         int price2 = price2SeekBar.getProgress();
         if (price1 == 0 && price2 == 0) {
-            return;
+            price1 = 1;
+            price2 = 1;
         }
         if (price1 <= price2) {
             min *= price1 ;

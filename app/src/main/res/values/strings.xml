@@ -19,4 +19,5 @@
     <string name="email">Email</string>
     <string name="save_search_result">Save your search result?</string>
     <string name="favorite">Favorite</string>
+    <string name="wait">Please wait...</string>
 </resources>

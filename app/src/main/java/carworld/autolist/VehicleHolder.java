@@ -45,10 +45,10 @@ public  class VehicleHolder extends RecyclerView.ViewHolder implements View.OnCl
     @Override
     public void onClick(View v) {
         DebugStatements.printDebugStatements(vehicle.getDescription());
-            Context context = itemView.getContext();
-            Intent vehicleDetailIntent = new Intent(context, VehicleDetailActivity.class);
-            vehicleDetailIntent.putExtra(Config.recycleView.SELECTED_VEHICLE, vehicle);
-            context.startActivity(vehicleDetailIntent);
+        Context context = itemView.getContext();
+        Intent vehicleDetailIntent = new Intent(context, VehicleDetailActivity.class);
+        vehicleDetailIntent.putExtra(Config.recycleView.SELECTED_VEHICLE, vehicle);
+        context.startActivity(vehicleDetailIntent);
     }
 
     public void bindVehicle(Vehicle v) {
