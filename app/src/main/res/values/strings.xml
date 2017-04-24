@@ -2,6 +2,7 @@
     <string name="app_name">AutoList</string>
     <string name="ok">ok</string>
     <string name="yes">Yes</string>
+    <string name="done">Done!</string>
     <string name="save">save</string>
     <string name="saved">Search result saved</string>
     <string name="filter">filter</string>
@@ -24,4 +25,19 @@
     <string name="favorite">Favorite</string>
     <string name="wait">Please wait...</string>
     <string name="contact_dealer">contact\ndealer</string>
+
+    <string name="sign_up">Signup</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="username">Username</string>
+    <string name="username_hint">Enter email or phone</string>
+    <string name="password">Password</string>
+    <string name="new_password">New\nPassword</string>
+    <string name="password_hint">Enter password</string>
+    <string name="incorrect_password">Password entered is incorrect</string>
+    <string name="incorrect_username">Username entered is incorrect</string>
+    <string name="reset_password">Reset password</string>
+    <string name="reset">Reset</string>
+    <string name="password_resetted">Password successfully resetted!</string>
+    <string name="logged_out">You are now logged out!</string>
 </resources>

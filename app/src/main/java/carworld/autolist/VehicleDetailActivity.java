@@ -1,14 +1,18 @@
 package carworld.autolist;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -49,16 +53,26 @@ public class VehicleDetailActivity extends AppCompatActivity {
     protected TextView isFavoritedLabel;
     @Bind(R.id.contact)
     protected Button contactDealer;
+    @Bind(R.id.logout)
+    protected Button logout;
 
 
     private Vehicle vehicle;
+    SharedPreferences sharedPreference;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vehicle_detail);
         ButterKnife.bind(this);
+        initData();
+        drawComponents();
+    }
+
+    private void initData() {
         Intent intent = getIntent();
         vehicle = intent.getParcelableExtra(Config.recycleView.SELECTED_VEHICLE);
-        drawComponents();
+        sharedPreference = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
     }
 
     private void drawComponents() {
@@ -85,6 +99,11 @@ public class VehicleDetailActivity extends AppCompatActivity {
         } else {
             contactDealer.setCompoundDrawablesWithIntrinsicBounds(R.drawable.contact_phone, 0, 0, 0);
         }
+        if (sharedPreference.getBoolean(Config.sharedPreference.IS_LOGGEDIN, false))  {
+            logout.setVisibility(View.VISIBLE);
+        } else {
+            logout.setVisibility(View.GONE);
+        }
     }
 
     @OnClick(R.id.share)
@@ -95,6 +114,37 @@ public class VehicleDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.contact)
     protected void contactVehicleDealer() {
+        if (sharedPreference.getBoolean(Config.sharedPreference.IS_LOGGEDIN, false)) {
+            startContactDealerIntent();
+        } else {
+            Intent loginIntent = new Intent(this, LoginActivity.class);
+            loginIntent.putExtra(Config.recycleView.SELECTED_VEHICLE, vehicle);
+            startActivityForResult(loginIntent, Config.intent.CONTACT_DEALER);
+        }
+    }
+
+    @OnClick(R.id.logout)
+    protected void logout() {
+        sharedPreference.edit().putBoolean(Config.sharedPreference.IS_LOGGEDIN, false).apply();
+        logout.setVisibility(View.GONE);
+        Toast.makeText(this, getString(R.string.logged_out), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == Config.intent.CONTACT_DEALER) {
+            if (sharedPreference.getBoolean(Config.sharedPreference.IS_LOGGEDIN, false))  {
+                logout.setVisibility(View.VISIBLE);
+            } else {
+                logout.setVisibility(View.GONE);
+            }
+            startContactDealerIntent();
+        }
+    }
+
+    private void startContactDealerIntent() {
         switch(vehicle.getSellerDetails().getContactType()) {
             case EMAIL:
                 emailIntent(super.getString(R.string.contact_dealer_email_subject),
@@ -105,6 +155,7 @@ public class VehicleDetailActivity extends AppCompatActivity {
                 phoneIntent(vehicle.getSellerDetails().getContactDetails());
         }
     }
+
 
     private void emailIntent(String subject, String body, String emailTo) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
