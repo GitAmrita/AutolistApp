@@ -1,10 +1,7 @@
 package carworld.autolist;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ContextThemeWrapper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
@@ -36,6 +33,7 @@ public class SaveSearchResultDialog extends AlertDialog {
             ButterKnife.bind(this, dialogView);
             alertDialogBuilder.setView(dialogView);
             saveSearchResultDialog = alertDialogBuilder.create();
+            saveSearchResultDialog.setCancelable(false);
             saveSearchResultDialog.show();
         } catch(Exception ex) {
 

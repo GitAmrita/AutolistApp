@@ -1,7 +1,5 @@
 package carworld.autolist.Network;
 
-import android.util.Log;
-
 import com.loopj.android.http.*;
 
 /**

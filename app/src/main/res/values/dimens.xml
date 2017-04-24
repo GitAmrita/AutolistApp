@@ -19,6 +19,7 @@
 
     <!-- price seek bar -->
     <dimen name="peek_margin">26dp</dimen>
+    <dimen name="price_button_margin">5dp</dimen>
     <dimen name="peek_width">300dp</dimen>
     <dimen name="peek_width_small">14dp</dimen>
     <dimen name="peek_width_large">29dp</dimen>

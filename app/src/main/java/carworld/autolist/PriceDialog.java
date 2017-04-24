@@ -52,6 +52,7 @@ public class PriceDialog extends AlertDialog {
             initData();
             setListeners();
             priceDialog = alertDialogBuilder.create();
+            priceDialog.setCancelable(false);
             priceDialog.show();
         } catch(Exception ex) {
 

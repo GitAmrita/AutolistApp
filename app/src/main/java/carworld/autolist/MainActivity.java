@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         prgDialog.setCancelable(false);
         vehicles = new LinkedList<>();
         usage = new VehicleNetworkUsage();
-        minPriceRange = 0;
-        maxPriceRange = 0;
+        minPriceRange = Config.priceRange.MULTIPLIER;
+        maxPriceRange = Config.priceRange.MULTIPLIER;
         isFiltered = false;
         page = 1;
         populateSearchResults();
