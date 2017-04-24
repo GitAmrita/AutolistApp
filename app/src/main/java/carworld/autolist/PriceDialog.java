@@ -49,7 +49,7 @@ public class PriceDialog extends AlertDialog {
             final View dialogView = inflater.inflate(R.layout.dialog_price_range, null);
             ButterKnife.bind(this, dialogView);
             alertDialogBuilder.setView(dialogView);
-            //initData();
+            initData();
             setListeners();
             priceDialog = alertDialogBuilder.create();
             priceDialog.show();
@@ -59,10 +59,10 @@ public class PriceDialog extends AlertDialog {
     }
 
     private void initData() {
-        price1SeekBar.setMax(price1);
+        price1SeekBar.setProgress(price1);
         price1Label.setText(activity.getString(R.string.price_seek_bar_label)
                 + price1 + activity.getString(R.string.price_seek_bar_multiplier));
-        price2SeekBar.setMax(price2);
+        price2SeekBar.setProgress(price2);
         price2Label.setText(activity.getString(R.string.price_seek_bar_label)
                 + price2 + activity.getString(R.string.price_seek_bar_multiplier));
     }
