@@ -1,10 +1,15 @@
 package carworld.autolist;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -16,11 +21,11 @@ import butterknife.ButterKnife;
 
 public class Adapter extends RecyclerView.Adapter<VehicleHolder> {
     private List<Vehicle> vehicles;
+    private MainActivity context;
 
-
-
-    public Adapter(List<Vehicle> vehicles) {
+    public Adapter(MainActivity context, List<Vehicle> vehicles) {
         this.vehicles = vehicles;
+        this.context = context;
     }
 
     @Override
@@ -33,6 +38,10 @@ public class Adapter extends RecyclerView.Adapter<VehicleHolder> {
     @Override
     public void onBindViewHolder(VehicleHolder holder, int position) {
         Vehicle item = vehicles.get(position);
+        if (position == Config.recycleView.ASK_SEARCH_RESULT_SAVED) {
+            Log.e("bapi", "adapter");
+            new SaveSearchResultDialog(context);
+        }
         holder.bindVehicle(item);
 
     }

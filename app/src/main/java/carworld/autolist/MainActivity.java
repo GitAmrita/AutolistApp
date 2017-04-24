@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initData();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.vehicleList);
-        adapter = new Adapter(vehicles);
+        adapter = new Adapter(this, vehicles);
        // recyclerView.addItemDecoration(new RecyclerViewDivider(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

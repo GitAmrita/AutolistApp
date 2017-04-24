@@ -18,6 +18,7 @@ public class Config {
     public static final class recycleView {
         public static final int VISIBLE_THRESHOLD = 5;
         public static final String SELECTED_VEHICLE = "selectedVehicle";
+        public static final int ASK_SEARCH_RESULT_SAVED = 19;
     }
 
     public static final class api {

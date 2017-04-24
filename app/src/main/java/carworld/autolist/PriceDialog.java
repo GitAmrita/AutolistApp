@@ -18,7 +18,6 @@ import carworld.autolist.Listener.OnSelectPriceRangeListener;
 // http://www.compiletimerror.com/2013/09/android-seekbar-example.html
 public class PriceDialog extends AlertDialog {
 
-    private MainActivity activity;
     private AlertDialog priceDialog;
     @Bind(R.id.price1_seek_bar)
     protected SeekBar price1SeekBar;
@@ -30,6 +29,7 @@ public class PriceDialog extends AlertDialog {
     protected TextView price2Label;
 
     private OnSelectPriceRangeListener listener;
+    private MainActivity activity;
     private int price1, price2;
 
     protected PriceDialog(MainActivity activity, int price1, int price2, final OnSelectPriceRangeListener listener) {
@@ -114,6 +114,9 @@ public class PriceDialog extends AlertDialog {
         int max = Config.priceRange.MULTIPLIER;
         int price1 = price1SeekBar.getProgress();
         int price2 = price2SeekBar.getProgress();
+        if (price1 == 0 && price2 == 0) {
+            return;
+        }
         if (price1 <= price2) {
             min *= price1 ;
             max *= price2;

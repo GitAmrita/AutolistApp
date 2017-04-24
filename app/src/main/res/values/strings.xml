@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">AutoList</string>
-    <string name="ok">OK</string>
+    <string name="ok">ok</string>
+    <string name="save">save</string>
+    <string name="saved">Search result saved</string>
     <string name="filter">filter</string>
-    <string name="cancel">Cancel</string>
+    <string name="cancel">cancel</string>
     <string name="default_price_seek_bar">Price: $1K</string>
     <string name="price_seek_bar_label">Price: $</string>
     <string name="price_seek_bar_multiplier">K</string>
@@ -15,4 +17,6 @@
     <string name="email_body">Hey what do you think about this car?\n\nCheck out the image: \n%1$s</string>
     <string name="email_subject">Thinking of buying a car!</string>
     <string name="email">Email</string>
+    <string name="save_search_result">Save your search result?</string>
+    <string name="favorite">Favorite</string>
 </resources>
