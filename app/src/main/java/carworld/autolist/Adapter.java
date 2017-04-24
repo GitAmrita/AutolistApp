@@ -34,7 +34,7 @@ public class Adapter extends RecyclerView.Adapter<VehicleHolder> {
     public void onBindViewHolder(VehicleHolder holder, int position) {
         final Vehicle item = vehicles.get(position);
         holder.favorite.setOnCheckedChangeListener(null);
-        holder.favorite.setChecked(false);
+        holder.favorite.setChecked(item.isFavorite());
         holder.favorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

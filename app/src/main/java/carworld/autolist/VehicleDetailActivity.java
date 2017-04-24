@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -62,10 +63,11 @@ public class VehicleDetailActivity extends AppCompatActivity {
         mileage.setText(vehicle.getMileage());
         location.setText(getLocation(vehicle));
         installment.setText(getInstallment(vehicle));
-        bodyType.setText(vehicle.getBodyType());
+        bodyType.setText(Helper.capitalizeFirstLetter(vehicle.getBodyType()));
         displayColor.setText(vehicle.getDisplayColor());
-        condition.setText(vehicle.getCondition());
+        condition.setText(Helper.capitalizeFirstLetter(vehicle.getCondition()));
         favorite.setChecked(vehicle.isFavorite());
+        favorite.setEnabled(false);
     }
 
     @OnClick(R.id.share)

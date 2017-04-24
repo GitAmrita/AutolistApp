@@ -1,5 +1,6 @@
 package carworld.autolist;
 
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -23,5 +24,12 @@ public class Helper {
                 .placeholder(R.drawable.ic_placeholder)
                 .error(R.drawable.ic_placeholder)
                 .into(image);
+    }
+
+    public static String capitalizeFirstLetter(String input) {
+        if (TextUtils.isEmpty(input)) {
+            return "";
+        }
+        return (input.substring(0, 1).toUpperCase() + input.substring(1));
     }
 }
