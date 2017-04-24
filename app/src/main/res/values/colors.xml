@@ -7,4 +7,6 @@
     <color name="lightGray">#ededed</color>
     <color name="button_background_pressed">#ff666666</color>
     <color name="button_text">#148080</color>
+    <color name="reset_password">#094EF7</color>
+
 </resources>

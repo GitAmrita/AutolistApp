@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">AutoList</string>
     <string name="ok">ok</string>
+    <string name="yes">Yes</string>
+    <string name="done">Done!</string>
     <string name="save">save</string>
     <string name="saved">Search result saved</string>
     <string name="filter">filter</string>
@@ -14,10 +16,28 @@
     <string name="condition">Car Condition</string>
     <string name="vehicle_details">Vehicle Details</string>
     <string name="share">share</string>
-    <string name="email_body">Hey what do you think about this car?\n\nCheck out the image: \n%1$s</string>
-    <string name="email_subject">Thinking of buying a car!</string>
+    <string name="share_vehicle_email_body">Hey what do you think about this car?\n\nCheck out the image: \n%1$s</string>
+    <string name="share_vehicle_email_subject">Thinking of buying a car!</string>
+    <string name="contact_dealer_email_body">Hey, I am interested in this car, please give a quote.\n\nCheck out the image: \n%1$s</string>
+    <string name="contact_dealer_email_subject">Quote requested</string>
     <string name="email">Email</string>
     <string name="save_search_result">Save your search result?</string>
     <string name="favorite">Favorite</string>
     <string name="wait">Please wait...</string>
+    <string name="contact_dealer">contact\ndealer</string>
+
+    <string name="sign_up">Sign up</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="username">Username</string>
+    <string name="username_hint">Enter email or phone</string>
+    <string name="password">Password</string>
+    <string name="new_password">New\nPassword</string>
+    <string name="password_hint">Enter password</string>
+    <string name="incorrect_password">Password entered is incorrect</string>
+    <string name="incorrect_username">Username entered is incorrect</string>
+    <string name="reset_password">Reset password</string>
+    <string name="reset">Reset</string>
+    <string name="password_resetted">Password successfully resetted!</string>
+    <string name="logged_out">You are now logged out!</string>
 </resources>

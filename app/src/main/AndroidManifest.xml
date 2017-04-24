@@ -18,9 +18,14 @@
         </activity>
         <activity
             android:name="carworld.autolist.VehicleDetailActivity" />
+        <activity
+            android:name="carworld.autolist.LoginActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
 
 </manifest>
