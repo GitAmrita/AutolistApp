@@ -45,5 +45,6 @@ public class Config {
         public static final String USERNAME = "username";
         public static final String PASSWORD_HASHED = "passwordHashed";
         public static final String IS_LOGGEDIN = "isLoggedIn";
+        public static final String SALT = "login11324";
     }
 }

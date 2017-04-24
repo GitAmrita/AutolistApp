@@ -50,8 +50,10 @@ public class ResetPasswordDialog extends AlertDialog {
     @OnClick(R.id.reset)
     protected void resetPressed() {
         resetPasswordDialog.cancel();
+        String hashedPassword = Helper.getSHA512SecurePassword(newPassword.getText().toString(),
+                Config.sharedPreference.SALT);
         sharedPreference.edit().putString(Config.sharedPreference.PASSWORD_HASHED,
-                newPassword.getText().toString()).apply();
+                hashedPassword).apply();
         Toast.makeText(activity.getApplicationContext(), activity.getApplicationContext().
                 getString(R.string.password_resetted), Toast.LENGTH_SHORT).show();
     }

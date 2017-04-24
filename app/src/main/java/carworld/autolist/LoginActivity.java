@@ -27,7 +27,7 @@ import butterknife.OnClick;
 /**
  * Created by amritachowdhury on 4/24/17.
  */
-
+//http://stackoverflow.com/questions/2480288/programmatically-obtain-the-phone-number-of-the-android-phone
 public class LoginActivity extends AppCompatActivity {
 
     @Bind(R.id.username)
@@ -64,10 +64,12 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.login)
     protected void login() {
         if (isSignUp()) {
+            String hashedPassword = Helper.getSHA512SecurePassword(password.getText().toString(),
+                    Config.sharedPreference.SALT);
             sharedPreference.edit().putString(Config.sharedPreference.USERNAME,
                     username.getText().toString()).apply();
             sharedPreference.edit().putString(Config.sharedPreference.PASSWORD_HASHED,
-                    password.getText().toString()).apply();
+                    hashedPassword).apply();
         } else {
             if (isIcorrectCredentials()) {
                 return;
@@ -110,13 +112,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isIcorrectCredentials() {
-        String newPassword = password.getText().toString();
+        String newHashedPassword = Helper.getSHA512SecurePassword(password.getText().toString(),
+                Config.sharedPreference.SALT);
         String storedPassword = sharedPreference.getString(
                 Config.sharedPreference.PASSWORD_HASHED, "");
         String newUsername = username.getText().toString();
         String storedUsername = sharedPreference.getString(
                 Config.sharedPreference.USERNAME, "");
-        if (!newPassword.equals(storedPassword)) {
+        if (!newHashedPassword.equals(storedPassword)) {
             Toast.makeText(this, getString(R.string.incorrect_password), Toast.LENGTH_LONG).show();
             return true;
         }
