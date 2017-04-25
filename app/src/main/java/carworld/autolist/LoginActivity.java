@@ -47,10 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreference = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
         setContentView(R.layout.login);
         ButterKnife.bind(this);
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
-            autoPopulatePhoneNumber();
-        } else {
-            requestPermissionForAndroid6AndAbove();
+        if (isSignUp()) {
+            usePhoneNUmberAsUsernameSuggestion();
         }
         drawComponentView();
     }
@@ -104,7 +102,16 @@ public class LoginActivity extends AppCompatActivity {
            login.setCompoundDrawablesWithIntrinsicBounds(R.drawable.login, 0, 0, 0);
            login.setText(getString(R.string.login));
            resetPassword.setVisibility(View.VISIBLE);
+           username.setText(sharedPreference.getString(Config.sharedPreference.USERNAME, ""));
        }
+    }
+
+    private void usePhoneNUmberAsUsernameSuggestion() {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+            autoPopulatePhoneNumber();
+        } else {
+            requestPermissionForAndroid6AndAbove();
+        }
     }
 
     private boolean isSignUp() {
