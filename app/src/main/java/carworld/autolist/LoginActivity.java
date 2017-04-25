@@ -143,8 +143,7 @@ public class LoginActivity extends AppCompatActivity {
     private void autoPopulatePhoneNumber() {
         TelephonyManager tMgr = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
         String phoneNumber = tMgr.getLine1Number();
-        String h = TextUtils.isEmpty(phoneNumber) ? "no phone" : phoneNumber;
-        Log.e("bapi phone", h);
-        username.setText(h);
+        String phone = TextUtils.isEmpty(phoneNumber) ? " " : phoneNumber;
+        username.setText(phone);
     }
 }
